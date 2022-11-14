@@ -1,46 +1,22 @@
-class Vehicle
-  attr_reader :make, :model
-
-  def initialize(make, model)
-    @make = make
-    @model = model
-  end
-
-  def to_s
-    "#{make} #{model}"
+module Mailable
+  def print_address
+    puts "#{name}"
+    puts "#{address}"
+    puts "#{city}, #{state} #{zipcode}"
   end
 end
 
-class Car < Vehicle
-  def wheels
-    4
-  end
+class Customer
+  include Mailable
+  attr_reader :name, :address, :city, :state, :zipcode
 end
 
-class Motorcycle < Vehicle
-  def wheels
-    2
-  end
+class Employee
+  include Mailable
+  attr_reader :name, :address, :city, :state, :zipcode
 end
 
-class Truck < Vehicle
-  attr_reader :payload
-
-  def initialize(make, model, payload)
-    super(make, model)
-    @payload = payload
-  end
-  
-  def to_s
-    super + " carries a #{payload}lbs payload."
-  end
-
-
-  def wheels
-    "6 wheels"
-  end
-end
-
-tundra = Truck.new("Toyota", "Tundra", 2620)
-puts tundra
-puts tundra.wheels
+betty = Customer.new 
+bob = Employee.new
+betty.print_address
+bob.print_address
